@@ -1,0 +1,70 @@
+//I'm commenting the lines with a second DC motor and buttons that I connected to the Arduino but didn't use
+// Have fun
+
+//Motors
+
+#define pinButtonA 2
+#define pinButtonB 7
+
+//#define pinForwardsMotorA 5
+//#define pinBackwardsMotorA 6
+
+#define pinForwardsMotorB 9
+#define pinBackwardsMotorB 10
+
+#define speed 80  //analogWrite will accept values from 0 to 255
+
+//Buttons
+
+byte stateA = 0;
+bool stateButtonA = true;
+bool stateAntButtonA = true;
+unsigned long delayButtonA;
+
+byte stateB = 0;
+bool stateButtonB = true;
+bool stateAntButtonB = true;
+unsigned long delayButtonB;
+
+//Sonic Sensor
+
+const int trigPin = 11;
+const int echoPin = 12;
+
+
+void setup() {
+
+  Serial.begin(9600);
+
+  //pinMode(pinButtonA, INPUT_PULLUP);
+  //pinMode(pinButtonB, INPUT_PULLUP);
+
+  //pinMode(pinForwardsMotorA, OUTPUT);
+  //pinMode(pinBackwardsMotorA, OUTPUT);
+  pinMode(pinForwardsMotorB, OUTPUT);
+  pinMode(pinBackwardsMotorB, OUTPUT);
+
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+}
+
+void loop() {
+
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  long duration = pulseIn(echoPin, HIGH);
+  int distance = duration / 58;
+
+  if (distance < 10) {
+    analogWrite(pinForwardsMotorB, speed);
+    analogWrite(pinBackwardsMotorB, LOW);
+
+  } else {
+
+    analogWrite(pinForwardsMotorB, LOW);
+    analogWrite(pinBackwardsMotorB, LOW);
+  }
+}
