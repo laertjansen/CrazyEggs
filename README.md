@@ -21,3 +21,6 @@ What you'll need:
 
 
 ![IMG_9168](https://github.com/user-attachments/assets/9088d647-3612-450a-94c8-663aff1c659a)
+
+
+![3HappyEggs_Schematics_1920](https://github.com/user-attachments/assets/956f9fab-3de9-4a72-875d-294761631c46)
